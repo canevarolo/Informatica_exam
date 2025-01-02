@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define KERNELBORDER 3
+#define IMAGERIGHE 1024
+#define IMAGECOLONNE 768
+#define OUTPUT_FILE_NAME "risultato.txt"
+
+int main(int argc, *char argv[])
+{
+    int kernel[KERNELBORDER][KERNELBORDER], immagine[IMAGERIGHE][IMAGECOLONNE]; //variabili globali
+    int i, j;
+    int GetImageVal(int r, int c);
+
+    FILE *ifile, *kfile, *ofile;
+
+    ifile = fopen (argv[1], "r");
+    kfile = fopen (argv[2], "r");
+    ofile = fopen (OUTPUT_FILE_NAME, "w");
+
+     if (ifile == NULL || kfile == NULL || ofile == NULL) {
+        printf ("Errore nell'apertura del file \n");
+        return EXIT_FAILURE;
+    }
+
+    if (argc != 3) {
+        printf ("Troppi parametri\n");
+        return EXIT_FAILURE;
+    }
+
+    for (i=0; i<IMAGERIGHE; i++) {
+        for (j=0; j<IMAGECOLONNE; j++) {
+            fscanf (ifile, "%d", &immagine[i][j]);
+        }
+    }
+
+    fclose(ifile);
+
+    for (i=0; i<KERNELBORDER; i++) {
+        for (j=0; j<KERNELBORDER; j++) {
+            fscanf (, "%d", &kernel[i][j]);
+        }
+    }
+
+    for (i=0; i<IMAGERIGHE; i++) {
+        for (j=0; j<IMAGECOLONNE; j++) {
+            fscanf();
+        }
+    }
+
+    return EXIT_SUCCESS;
+}
+
+int GetImageVal(int r, int c)
+{
+    if (r)
+
+}
