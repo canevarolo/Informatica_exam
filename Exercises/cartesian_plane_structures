@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+main()
+
+{
+
+    struct point {
+                    double x;
+                    double y;
+                 } Point;
+
+}
+
+double DistanzaDaOrigine (Point p);
+
+{
+    return sqrt(p.x*p.x+p.y*p.y);
+}
+
+double distanza (Point p1, Point p2)
+
+{
+    return sqrt ((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
+}
+
+int Quadrante (Point p)
+
+{
+
+if (p.x >= 0 && p.y >= 0) return 1;
+if (p.x <= 0 && p.y >= 0) return 2;
+if (p.x <= 0 && p.y <= 0) return 3;
+if (p.x >= 0 && p.y <= 0) return 4;
+
+}
+
+int Allineati (Point p1, Point p2, Point p3)
+
+{
+
+double r1, r2;
+
+/* verifichiamo che il rapporto tra y e x
+delle due coppie di punti sia identico */
+
+r1 = (p2.y-p1.y)/(p2.x-p1.x);
+r2 = (p3.y-p2.y)/(p3.x-p2.x);
+
+if (r1 == r2) return 1;
+
+else return 0;
+
+}
+
+int Interseca(Point p1, Point p2)
+
+{
+
+/* verifichiamo se sono in quadranti diversi */
+
+if (Quadrante(p1) == Quadrante(p2)) return 0;
+
+else return 1;
+
+}
