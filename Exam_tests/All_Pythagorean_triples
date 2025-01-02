@@ -1,0 +1,25 @@
+/*  Realizzare un programma che generi e stampi tutte le terne pitagoriche nell'intervallo degli interi
+   (A, B e C formano una terna pitagorica se A2 + B2 = C2).
+    E' richiesto che il test venga effettuato da una funzione che restituisca il valore
+    TRUE se la terna passata come parametro e' pitagorica,
+    FALSE altrimenti.
+    Suggerimento: attenzione all’overflow della somma! */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 128
+
+int main()
+{
+    int a, b, c;
+
+    for (a = 3; a < MAX; a++) {
+        for (b = 4; b < MAX; b++) {
+            for (c = 5; c < MAX; c++) {
+                if (c*c == b*b + a*a) printf ("La terna %d %d %d risulta essere pitagorica\n", a, b, c);
+            }
+        }
+    }
+
+    return 0;
+}
