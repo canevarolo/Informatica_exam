@@ -1,0 +1,54 @@
+/*  Realizzare una programma per la gestione degli esami di questo corso.
+    I comandi che il programma deve gestire sono:
+         I <Cognome_Nome> <Matricola> <Voto> per inserire i dati di uno studente.
+         C <Cognome_Nome> per cancellare i dati dello studente con quel nome.
+         C <Matricola> per cancellare i dati dello studente con quella matricola.
+         V <Cognome_Nome> per visualizzare i dati dello studente con quel nome.
+         V <Matricola> per visualizzare i dati dello studente con quella matricola.
+         P per stampare tutto il data-base.
+         L <Nomefile> per leggere i dati (già ordinati) dal file con quel nome.
+         S <Nomefile> per salvare i dati del data-base nel file con quel nome.
+    Utilizzare un vettore di struct ordinato in base al campo <Cognome_Nome>.
+    NOTE: i comandi sono da fornire (e il programma deve accettarli) nella forma fissata dalle specifiche,
+    senza inutili domande ridondanti.
+    Ad esempio, per inserire i dati di uno studente:
+    I Rossi Francesco Maria 123456 30
+    Pertanto per i comandi C (cancellazione) e V (visualizzazione) il programma deve comprendere da solo (dal dato)
+    se si è inserito un nome oppure una matricola.
+    Si ipotizzi che i Cognome_Nome non contenga cifre, che la Matricola sia solo numerica e che l’input sia corretto. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXNAME 30
+#define MAXMATRICOLA 6
+#define VOTOLENGHT 2
+
+int main()
+{
+    typedef struct stud {
+        char Cognome_Nome[MAXNAME];
+        int Matricola[MAXMATRICOLA];
+        int Voto[VOTOLENGHT];
+    } studente;
+    char comando, Cognomeinserito[MAXNAME];
+    //int i;
+
+    printf ("Inserire comando: \n");
+    scanf ("%c", &comando);
+
+    if (comando == 'I') {
+            printf ("Inserire cognome, nome, numero di matricola e voto dell'esame\n");
+            struct stud studente = {scanf ("%s %d %d", &studente.Cognome_Nome, &studente.Matricola, &studente.Voto)};
+            //puts (studente.Cognome_Nome); controllo
+    }
+
+    if (comando == 'C') {
+        printf ("Inserire il cognome e il nome dello studente del quale si vogliono cancellare i dati:\n");
+        scanf ("%s", &Cognomeinserito[MAXNAME]);
+        if (studente.Cognome_Nome == Cognomeinserito) {
+            struct studente = NULL;
+        }
+    }
+
+    return 0;
+}
