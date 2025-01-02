@@ -1,0 +1,49 @@
+/* Si scriva un programma C che:
+    a. Acquisisca una stringa di massimo N caratteri (con N valore costante)
+    b. Ne manipoli il contenuto
+        i. Trasformando tutte le lettere minuscole in maiuscole
+        ii. Rimpiazzando tutti i caratteri non alfanumerici con il carattere ‘_’
+        iii. Sostituendo i caratteri numerici con il carattere ‘*’
+    c. Scandisca la stringa manipolata per contare quante parole sono presenti al suo interno,
+    considerando una o più occorrenze del carattere ‘_’ come separatore tra parole. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#define N 20
+
+int main()
+{
+    int parola = 1, i;
+    char stringa[N];
+
+    printf ("Inserisci stringa: \n");
+    gets (stringa);
+
+    if (gets(stringa) == NULL)
+    {
+        printf("Errore di lettura della stringa\n");
+        return -1;
+    }
+
+    for (i=0; i < strlen(stringa); i++) {
+       if (stringa[i] == ' ')
+            parola++;
+    }
+
+    for (i=0; i < strlen(stringa); i++) {
+        if (isalnum(stringa[i]) == 0)
+            stringa[i] = '_';
+        else if (isdigit(stringa[i]))
+            stringa[i] = '*';
+        else stringa[i] = toupper(stringa[i]);
+    }
+
+    puts (stringa);
+
+
+    printf ("Il numero di parole è di %d", parola);
+
+    return 0;
+}
