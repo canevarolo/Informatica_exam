@@ -1,0 +1,41 @@
+/*  Si scriva un programma che acquisisca 3 stringhe,
+    ciascuna contenente il nome di un prodotto e il relativo prezzo separati da spazio.
+    Una volta memorizzate queste informazioni in opportune variabili, il programma riceve un’ulteriore stringa
+    contente un nome di prodotto e un valore intero corrispondente a una quantità.
+    Il programma deve:
+        a. Stabilire se il prodotto inserito per ultimo corrisponde ad uno dei prodotti memorizzati in precedenza
+        b. In caso negativo, richiedere un altro inserimento di nome prodotto e quantità
+        c. In caso positivo, calcolare e visualizzare il costo totale moltiplicando quantità e prezzo del prodotto in questione */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define N 100
+
+int main()
+{
+    char prodotto1[N], prodotto2[N], prodotto3[N], prodottorichiesto[N];
+    float prezzo1, prezzo2, prezzo3;
+    int numpezzi;
+
+    printf ("Inserire 3 stringhe, come da istruzioni: \n");
+    scanf ("%s %d", &prodotto1[N], &prezzo1);
+    scanf ("%s %d", &prodotto2[N], &prezzo2);
+    scanf ("%s %d", &prodotto3[N], &prezzo3);
+
+    printf ("\nInserire un prodotto inserito in precedenza con relativa quantità desiderata: \n");
+    scanf ("%s %d", &prodottorichiesto[N], &numpezzi);
+
+    if (strcmp(prodottorichiesto, prodotto1) == 0) {
+        printf ("Una quantità %d del prodotto %s costa %f", numpezzi, prodottorichiesto[N], numpezzi*prezzo1);
+    }
+    if (strcmp(prodottorichiesto, prodotto2) == 0) {
+        printf ("Una quantità %d del prodotto %s costa %f", numpezzi, prodottorichiesto[N], numpezzi*prezzo2);
+    }
+    if (strcmp(prodottorichiesto, prodotto3) == 0) {
+        printf ("Una quantità %d del prodotto %s costa %f", numpezzi, prodottorichiesto[N], numpezzi*prezzo3);
+    }
+
+    return 0;
+}
