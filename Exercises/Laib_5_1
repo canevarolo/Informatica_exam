@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int N, X, i=0;
+    float media;
+
+    printf ("Inserire numero intero N: ");
+    scanf ("%d", &N);
+
+    media = N;
+
+    for (i=0; i<10; i++) {
+                             media = (media + N)/i+1;
+
+                             if (media < N)
+                                printf ("Il valore inserito non è valido");
+
+                             else printf ("Inserire altro intero: \n");
+                             scanf ("%d ", &X);
+                        }
+
+
+
+    return 0;
+}
