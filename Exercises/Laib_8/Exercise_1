@@ -1,0 +1,63 @@
+//Si scriva un programma che:
+//a. Definisca un vettore di caratteri e acquisisca una stringa al suo interno
+//b. Analizzi tale stringa rispondendo alle seguenti domande
+//i. Quanto è lunga la stringa?
+//ii. Quanti caratteri sono alfabetici e quanti numerici?
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define N 128
+
+/* Tentativo fallito con funzioni fuori dal main
+ int isalpha(s) {
+    int i, len;
+    int alfabetici;
+ for (i=0; i<len; i++) {
+    if (isalpha(s))
+        alfabetici++;
+}
+return alfabetici;
+}
+
+int isdigit(s) {
+    int i, len;
+    int numerici;
+for (i=0; i<len; i++) {
+    if (isdigit(s))
+        numerici++;
+}
+return numerici;
+} */
+
+int main()
+{
+    int len = 0, i;
+    char *s, v[N];
+    int alfabetici=0, numerici=0;
+
+    printf ("Inserire stringa: \n");
+    s = gets (v);
+
+    if (s == NULL) {
+        printf ("Errore nella lettura dei caratteri\n");
+        return 1;
+    }
+
+    len = strlen(s);
+    printf ("La lunghezza è di %d caratteri\n", len);
+
+    for (i=0; i<len; i++) {
+        if (isalpha(v[i]) == 0) {
+            numerici++;
+        }
+    else if (isdigit(v[i]) == 0) {
+                alfabetici++;
+            }
+    }
+
+    printf ("I caratteri alfabetici sono %d mentre i caratteri numerici sono %d\n", alfabetici, numerici);
+
+    return 0;
+}
