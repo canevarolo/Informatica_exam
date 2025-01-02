@@ -1,0 +1,44 @@
+/* Data la seguente struct:
+struct stud {
+char nome[40];
+unsigned int matricola;
+unsigned int voto;
+}
+- Si definisca un corrispondente tipo studente
+- Si scriva un main() che allochi un vettore di 10 elementi e che
+invochi la funzione descritta di seguito
+- Si scriva una funzione ContaInsufficienti() che riceva come
+argomento il vettore sopracitato e ritorni il numero di studenti che
+sono insufficienti */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define N 5
+
+int main()
+{
+    int matricola[N], voto[N], n, insufficienti=0;
+    char nome[N][20];
+
+    FILE *f;
+    f = fopen ("valutazioni.dat", "r");
+
+    if (f == NULL) {
+        printf ("Errore nell'apertura del file\n");
+        return 1;
+    }
+
+    for (n=0; n<N; n++) {
+        fscanf (f, "%s %d %d", nome[n], &matricola[n], &voto[n]);
+    }
+
+    for (n=0; n<N; n++) {
+        if (voto[n] < 18)
+            insufficienti++;
+    }
+
+    printf ("Il mumero di insufficienti e' %d\n", insufficienti);
+    fclose (f);
+
+    return 0;
+}
