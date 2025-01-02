@@ -1,0 +1,54 @@
+//Partita di memory
+
+#include <stdio.h>
+#include <stdlib.h>
+#define ALTEZZA 4
+#define LUNGHEZZA 5
+#define RIGHE 10
+
+int main(int argc, char *argv[2])
+{
+    int i=0, k=0, contatore=0, controlnumero=0;
+    FILE *ifile, *kfile;
+    int matrice[ALTEZZA][LUNGHEZZA];
+    if (argc != 2) {
+        printf (stderr, "Errore nell'argc\n", argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    ifile = fopen (argv[1], "r");
+    if (ifile == NULL) {
+        printf ("Errore nell'apertura del file\n");
+        return EXIT_FAILURE;
+    }
+    for (i=0; i<ALTEZZA; i++) {
+        for (k=0; k<LUNGHEZZA; k++) {
+            sscanf(ifile, "%d", &matrice[k][i]);
+        }
+    } //suppongo che il formato del primo file sia corretto (4X5)
+
+    for (controlnumero=0; controlnumero<10; controlnumero++) {
+        for (i=0; i<ALTEZZA; i++) {
+            for (k=0; k<LUNGHEZZA; k++) {
+                if (matrice[k][i] == controlnumero) {
+                contatore++;
+                }
+            }
+        }
+    if (contatore < 2) {
+        printf ("Il numero %d compare meno di due volte\n", controlnumero);
+        printf ("ERRORE CONFIGURAZIONE INIZIALE\n");
+        return EXIT_FAILURE;
+        }
+    else if (contatore > 2){
+        printf ("Il numero %d compare pi  di due volte\n", controlnumero);
+        printf ("ERRORE CONFIGURAZIONE INIZIALE\n");
+        return EXIT_FAILURE;
+    }
+    contatore=0;
+    }
+
+    fclose (ifile);
+    fclose (kfile);
+    return 0;
+}
