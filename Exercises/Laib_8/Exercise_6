@@ -1,0 +1,32 @@
+/* Si scriva un programma C che acquisisca sequenze di caratteri da tastiera conclusa da un ritorno a capo.
+   Il programma deve continuare ad acquisire sequenze fino alla ricezione di un EOF (Ctrl-z).
+   Il programma deve quindi stampare le sequenze caratteri acquisiti
+   a. Sostituendo ad ogni sequenza “ch” il carattere ‘k’
+   b. Sostituendo le doppie con una sola ripetizione del carattere.  */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int ch, prev_ch = '\0';
+
+    while ((ch = getchar()) != EOF)
+    {
+        if (ch == 'c')
+            ;
+        else if (ch == 'h' && prev_ch == 'c')
+            putchar ('k');
+        else if (prev_ch == 'c' && ch != 'c')
+        {
+            putchar (prev_ch);
+            putchar (ch);
+        }
+        else if (ch != prev_ch)
+            putchar (ch);
+
+        prev_ch = ch;
+    }
+
+    return 0;
+}
