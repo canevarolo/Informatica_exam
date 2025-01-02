@@ -1,0 +1,83 @@
+/*Si scriva un programma per la gestione di una rubrica di massimo 100
+persone. Il programma deve permettere la memorizzazione dei seguenti
+dati in una struttura:
+- Nome
+- Cognome
+- Numero di telefono fisso
+- Numero di telefono mobile
+typedef struct nomi {
+char nome[20];
+char cognome[20];
+char fisso[20];
+char mobile[20];
+} Nomi;
+Il programma deve permettere all'utente di effettuare, tramite scelta da
+menu, l’inserimento di un nuovo nominativo (tollerando eventuali
+duplicazioni di nome e cognome, ma segnalandole all’utente e chiedendo
+un’ulteriore conferma), e la stampa dell’elenco completo. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAXUTENTI 100
+
+typedef struct nomi {
+char nome[20];
+char cognome[20];
+char fisso[20];
+char mobile[20];
+} Nomi;
+
+int main()
+{
+    Nomi nomi[MAXUTENTI];
+    char answ, risposta;
+    char prev_cognome[20], prev_nome[20];
+    int numutenti, i;
+
+    printf ("Inserire un nuovo contatto(Y/N)?\n");
+    answ = getchar ();
+
+    if (answ == NULL) {
+        printf ("Errore nella ricezione del file\n");
+        return 1;
+    }
+
+    if (answ == 'Y') {
+        printf ("Quanti utenti vuoi inserire?\n");
+        scanf ("%d", &numutenti);
+
+    for (i=0; i<numutenti; i++) {
+        printf ("Inserisci nome utente: \n");
+        scanf ("%s", nomi[i].nome);
+        printf ("Inserisci cognome utente: \n");
+        scanf ("%s", nomi[i].cognome);
+        printf ("Inserisci numero fisso: \n");
+        scanf ("%s", nomi[i].fisso);
+        printf ("Inserisci numero telefono: \n");
+        scanf ("%s", nomi[i].mobile);
+    }
+
+    if (numutenti > 1) {
+    for (i=0; i<numutenti; i++) {
+        prev_cognome = strcpy(nomi[i-1].cognome, ); //CORREGGERE QUESTO PUNTO
+        prev_nome = nomi[i-1].nome;
+        if ((strcmp(nomi[i].cognome, prev_cognome) == 0) && (strcmp(nomi[i].nome, prev_nome) == 0))
+            printf ("Contatto già esistente, confermare la duplicazione (Y/N)?\n");
+            gets (risposta);
+    }
+    }
+    }
+
+    else if (answ == 'N') {
+        printf ("Programma terminato\n");
+        return 0;
+    }
+
+    else {
+        printf ("Inserisci una risposta valida\n");
+        return 1;
+    }
+
+    return 0;
+}
