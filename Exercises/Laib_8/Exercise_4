@@ -1,0 +1,61 @@
+/*  Si scriva un programma che acquisisca utilizzando la funzione gets una stringa
+    composta da un massimo di 5 parole separate da spazi, per un totale di massimo 60 caratteri.
+    Il programma deve
+        a. Stabilire quante sono le parole contenute effettivamente nella stringa (senza considerare parole con apostrofi)
+        b. Calcolare la media della lunghezza delle parole
+        c. Produrre una statistica sulla lunghezza delle parole */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
+#define MAXCHAR 61
+#define MAXWORDS 5
+
+int main()
+{
+    char stringa[MAXCHAR];
+    int contaspazi = 0, contacaratteri = 0, parole = 0, i;
+    int caratteriparola[MAXCHAR] = {0}, frequenza[MAXCHAR] = {0}, somma = 0, k;
+    float mediaparola = 0.00;
+
+    printf ("Inserire stringa: \n");
+    gets (stringa);
+
+    if (gets(stringa) == NULL) {
+        printf ("Stringa non ricevuta correttamente\n");
+    }
+
+    for (i = 0; i < strlen(stringa); i++) {
+        if (stringa[i] != '\0') {
+            if (stringa[i] == ' ')
+                contaspazi++;
+            else contacaratteri++;
+        }
+    }
+
+    parole = contaspazi + 1;
+    somma = contacaratteri - contaspazi + 1;
+    mediaparola = (float)somma / parole;
+
+    printf ("La stringa contiene %d parole\nLa lunghezza media delle parole   %2f caratteri\n", parole, mediaparola);
+    printf ("La stringa contiene:\n");
+
+   for (i = 0; i < strlen(stringa); i++) {
+            if (stringa[i] != ' ') {
+                caratteriparola[i]++;
+            }
+            else {
+                frequenza[k]++;
+            }
+    }
+
+    for (k = 0; k < contaspazi; k++){
+        for (i = 0; i < caratteriparola[i]; i++) {
+    printf ("%d parole contengono %d caratteri\n", frequenza[k], caratteriparola[i]);
+        }
+    }
+
+    return 0;
+}
