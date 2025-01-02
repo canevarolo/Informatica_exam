@@ -1,0 +1,64 @@
+/* Si realizzi un programma in linguaggio C che analizzi un documento di tipo testo costituito da un numero imprecisato di righe.
+Il documento viene caricato in input tramite la tastiera.
+Il programma deve effettuare le seguenti operazioni:
+- contare il numero totale di righe;
+- contare il numero totale di parole;
+- determinare la lunghezza media di una parola.
+Ai fini di questo problema, si considera come parola una sequenza di caratteri appartenenti tutti alla medesima riga e privi di spazi.
+Ad esempio se in ingresso viene fornito il seguente documento:  fatti non foste  per viver come bruti  ma per seguir virtute e canoscenza
+Il programma deve generare un output simile al seguente:
+Numero di righe: 3
+Numero di parole: 13
+Lunghezza media di una parola: 4.5 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int righe=0, parole=0, caratteri;
+    float media_parola;
+    int ch, emptyfile=1;
+    char nomefile[128], *res;
+
+    FILE *f;
+
+    printf ("Inserire nome file: ");
+    res = gets (nomefile);
+    if (res == NULL) {
+        printf ("Errore in gets\n");
+        return 1;
+    }
+
+    // printf ("%s\n", nomefile);
+    f = fopen (nomefile, "r");
+    if (f == NULL) {
+        printf ("Errore nell'apertura del file\n");
+        return 1;
+    }
+
+    while ((ch = fgetc(f)) != EOF) {
+        emptyfile = 0;
+        if (ch == '\n') {
+            righe ++;
+            parole ++;
+        }
+        else if (ch == ' ')
+            parole ++;
+        else caratteri++;
+    }
+    if (emptyfile != 1) {
+        parole++;
+        righe++;
+    }
+
+    media_parola = caratteri/parole;
+
+    printf ("Le righe totali sono %d\n"
+            "Le parole sono %d\n"
+            "La lunghezza media di una parola   di %f caratteri\n", righe, parole, media_parola);
+
+    fclose (f);
+
+    return 0;
+}
