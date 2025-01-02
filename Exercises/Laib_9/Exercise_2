@@ -1,0 +1,89 @@
+/* Si scriva un programma in grado di gestire un listino prezzi, ovvero un
+programma con cui sia possibile gestire un elenco di prodotti e i loro
+relativi prezzi in €. Il programma utilizza una matrice di caratteri chiamata
+warehouse di dimensione NxM per memorizzare i nomi dei prodotti
+(massimo N prodotti) e un vettore di numeri decimali chiamato price di
+dimensione N usato per memorizzare i prezzi dei prodotti (il prezzo
+presente nell’i-esima cella di price corrisponde al prezzo del prodotto il cui
+nome è memorizzato nell’i-esima riga di warehouse). Di seguito la
+visualizzazione logica dei dati definiti.
+Nel vettore price, il valore -2 indica linea libera (ossia nessun prodotto
+nella riga corrispondente in warehouse), mentre un valore positivo indica
+che la linea corrispondente in warehouse contiene un prodotto valido a cui
+è stato associato un prezzo. All’avvio del programma, il vettore price è
+totalmente inizializzato a -2 (ossia il listino è vuoto/non contiene prodotti).
+Il programma propone all’utente un elenco di operazioni possibili
+sottoforma di menu. L’utente decide quale operazione eseguire
+selezionando il numero associato all’operazione di suo interesse.
+Le operazioni possibili sono:
+1) Inserimento di un nuovo prodotto e relativo prezzo
+2) Stampa listino attuale (elenco dei prodotti con i relativi prezzi)
+3) Uscita dal programma
+Le prime due operazioni devono essere realizzate tramite l’invocazione
+delle seguenti due funzioni di cui si forniscono prototipo e funzionalità:
+ insert_product: è una funzione che permette di inserire un nuovo
+prodotto e il suo prezzo nel listino (il nome del prodotto deve essere di
+max M-1 caratteri). La funzione restituisce il valore 1 se il prodotto
+non era ancora presente nel listino e il suo inserimento nel listino è
+avvenuto con successo, 0 se già presente (ossia prodotto già inserito in
+precedenza), 2 se il listino è pieno (e quindi non risulta possibile
+inserire il nuovo prodotto). Se il prodotto non era ancora presente nel
+listino la funzione deve inserire il suo nome nella prima cella libera
+presente in warehouse e il prezzo a lui associato nella cella
+corrispondente di price.
+int insert_product(char warehouse[][M], float price[], int n, char new_product[],
+float price_new_product);
+Il parametro n corrisponde al numero di righe della matrice
+warehouse, che corrisponde anche al numero di celle del vettore price
+(in fase di invocazione nel nostro caso passeremo il valore N).
+ print_all: è una funzione che permette di visualizzare a video il
+contenuto del listino (elenco prodotti e relativi prezzi). Inoltre, la
+funzione restituisce due valori (tramite due parametri passati per
+indirizzo): il prezzo medio ed il prezzo massimo dei prodotti presenti
+nel listino. Visualizzare a video i due valori restituiti.
+void print_all(char warehouse[][M], float price[], int n, float *avg, float *max);
+Avvertenza: l’esercizio suggerisce di utilizzare il vettore price
+contemporaneamente in due modi: per contenere il prezzo della merce, come
+flag di posizione vuota. Tenerne conto quando si cerca il nome di un prodotto,
+quando si effettua la stampa, etc. */
+
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#define N 5
+#define M 12
+
+int main()
+{
+    char warehouse[N][M], answer, new_product[M-1];
+    int  i, k, n;
+    float price[N]={-2}, price_new_product;
+
+    printf ("Inserire nuovo prodotto? Y/N \n");
+    scanf ("%c", &answer);
+
+    if (answer == 'Y')
+
+        printf ("Inserire prodotto di %d caratteri: \n", M);
+        scanf ("%s\n", &new_product);
+
+        for (i=0; i<N; i++) {
+                                for (k=0; k<M; k++){
+                                                        if (warehouse[i][k] == new_product[i]) printf ("1");
+                                                        else if (isblank(warehouse[i][k])) printf ("0");
+                                                        else if (isalnum(warehouse[i][k])) printf ("2");
+                                                    }
+                            }
+
+    int insert_product (char warehouse[N][M], float price[N], int n, char new_product[M-1],
+                        float price_new_product);
+
+    if (answer == 'N') printf ("Non hai inserito nessun valore nuovo");
+
+    return 0;
+}
+
+void print_all(char warehouse[][M], float price[], int n, float *avg, float *max)
+{
+        for (n)
+}
