@@ -1,0 +1,75 @@
+/* Si scriva un programma che acquisisca 2 stringhe corrispondenti a 2 orari
+nel formato hh:mm. Il programma deve:
+a. Controllare le stringhe, segnalando i casi in cui il formato non sia
+rispettato (ad esempio 10,30 non è valido)
+b. Stabilire se l’orario contenuto nella prima stringa è precedente a
+quello contenuto nella seconda stringa
+c. In caso affermativo, tradurre i 2 orari in valori interi corrispondenti
+all’orario espresso come distanza in minuti da 00:00 e calcolarne la
+differenza
+d. Convertire il risultato (sarà un numero intero positivo) in una stringa
+così composta “<intervallo calcolato>_minuti” e la stampi a video. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main()
+{
+    char orario1[5], orario2[5];
+    int i;
+
+    printf ("Inserisci un orario: \n");
+    gets (orario1);
+
+    if (orario1[2] != ':') {
+        printf ("La scrittura dell'orario risulta errata perchè tra i numeri non c'è il carattere ':'\n");
+        return -1;
+    }
+    if (isdigit(orario1[0]) == 0 || isdigit(orario1[1]) == 0 || isdigit(orario1[3]) == 0|| isdigit(orario1[4]) == 0) {
+        printf ("Almeno un carattere inserito non risulta cifra\n");
+        return -1;
+    }
+    if (orario1[0] > '2' || (orario1[0] == '2' && orario1[1] > '3')) {
+        printf ("Orario inesistente1\n");
+        return -1;
+    }
+    if (orario1[3] > '59') {
+        printf ("Orario inesistente2\n");
+        return -1;
+    }
+
+
+    printf ("Inserisci un orario: \n");
+    gets (orario2);
+
+    if (orario2[2] != ':') {
+        printf ("La scrittura dell'orario risulta errata perchè tra i numeri non c'è il carattere ':'\n");
+        return -1;
+    }
+    if (isdigit(orario2[0]) == 0 || isdigit(orario2[1]) == 0 || isdigit(orario2[3]) == 0 || isdigit(orario2[4]) == 0) {
+        printf ("Almeno un carattere inserito non risulta cifra\n");
+        return -1;
+    }
+
+    if (orario1[0] > orario2[0]) printf ("Il primo orario è maggiore del secondo\n");
+    else if (orario1[0] < orario2[0]) printf ("Il secondo orario è maggiore del primo\n");
+    else if (orario1[0] == orario2[0]) {
+        if (orario1[1] > orario2[1]) printf ("Il primo orario è maggiore del secondo\n");
+        else if (orario1[1] < orario2[1]) printf ("Il secondo orario è maggiore del primo\n");
+        else if (orario1[1] == orario2[1]) {
+            if (orario1[3] > orario2[3]) printf ("Il primo orario è maggiore del secondo\n");
+            else if (orario1[3] < orario2[3]) printf ("Il secondo orario è maggiore del primo\n");
+            else if (orario1[3] == orario2[3]) {
+                if (orario1[4] > orario2[4]) printf ("Il primo orario è maggiore del secondo\n");
+                else if (orario1[4] < orario2[4]) printf ("Il secondo orario è maggiore del primo\n");
+                else if (orario1[4] == orario2[4]) printf ("I due orari sono uguali\n");
+    }
+    }
+    }
+printf ("%d", orario1[3]);
+    //printf ("I minuti totali della giornata sono %d\n", );
+
+
+    return 0;
+}
