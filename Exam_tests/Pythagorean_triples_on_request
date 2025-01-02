@@ -1,0 +1,84 @@
+/*  Realizzare un programma che generi e stampi tutte le terne pitagoriche nell'intervallo degli interi
+    (A, B e C formano una terna pitagorica se A2 + B2 = C2).
+    E' richiesto che il test venga effettuato da una funzione che restituisca il valore
+    TRUE se la terna passata come parametro e' pitagorica,
+    FALSE altrimenti.
+    Suggerimento: attenzione all’overflow della somma!
+    Aggiunta di maxtmp e mintmp come variabili per definire chi siano le variabili */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 128
+#define MIN 1
+
+int main()
+{
+    int a, b, c, maxtmp, mintmp, middletmp;
+
+    printf ("Inserisci terna pitagorica in un qualsiasi ordine: \n");
+    scanf ("%d %d %d", &a, &b, &c);
+    printf ("\n");
+
+    if (a < MIN || a > MAX) {
+        printf ("Il valore %d non risulta essere valido, cambialo\n", a);
+        return -1;
+    }
+    if (b < MIN || b > MAX) {
+        printf ("Il valore %d non risulta essere valido, cambialo\n", b);
+        return -1;
+    }
+    if (c < MIN || c > MAX) {
+        printf ("Il valore %d non risulta essere valido, cambialo\n", c);
+        return -1;
+    }
+
+    if (a == b && b == c) {
+        printf ("Le terne pitagoriche non possono essere tre valori uguali!\n");
+        return -1;
+    }
+
+    if (a < b) {
+        mintmp = a;
+        maxtmp = b;
+        if (c > maxtmp) {
+            maxtmp = c;
+            middletmp = b;
+        }
+        else if (c < mintmp) {
+            mintmp = c;
+            middletmp = a;
+        }
+        else middletmp = c;
+    }
+    else if (a > b) {
+        mintmp = b;
+        maxtmp = a;
+        if (c > maxtmp) {
+            maxtmp = c;
+            middletmp = a;
+        }
+        else if (c < mintmp) {
+            mintmp = c;
+            middletmp = b;
+        }
+        else middletmp = c;
+    }
+    else if (a == b) {
+        if (c < a) {
+            c = mintmp;
+            a = maxtmp;
+            b = middletmp; //scelta mia di attribuire ad a il maxtmp
+        }
+        else {
+            maxtmp = c;
+            middletmp = b;
+            mintmp = a; //sempre una mia scelta
+        }
+    }
+
+    if (maxtmp*maxtmp == mintmp*mintmp + middletmp*middletmp)
+        printf ("Congratulazioni! Hai trovato una terna pitagorica\n");
+    else printf ("La terna inserita non è pitagorica\n");
+
+    return 0;
+}
